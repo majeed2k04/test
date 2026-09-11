@@ -1,15 +1,190 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Name Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Majeed - My Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+        }
+
+        nav {
+            background: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            width: 350px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 80px auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5568d9;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .link {
+            color: #667eea;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Welcome to My Website</h1>
-    <h2>My Name is Abdul Majeed</h2>
+    <!-- Navigation -->
+    <nav>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('login')">Login</a>
+        <a onclick="showPage('register')">Register</a>
+    </nav>
 
-    <p>This is my personal website created using HTML.</p>
+    <!-- Home Page -->
+    <div id="home" class="container page active">
+        <h1>Welcome to My Website</h1>
+        <h2>Abdul Majeed</h2>
+        <p>This is my personal website created using HTML.</p>
+
+        <button onclick="showPage('login')">Login</button>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login" class="container page">
+        <h1>Login</h1>
+
+        <input type="text" id="username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button onclick="login()">Login</button>
+
+        <p style="margin-top:20px;">
+            Don't have an account?
+            <span class="link" onclick="showPage('register')">
+                Register
+            </span>
+        </p>
+    </div>
+
+    <!-- Register Page -->
+    <div id="register" class="container page">
+        <h1>Register</h1>
+
+        <input type="text" placeholder="Enter Full Name">
+        <input type="email" placeholder="Enter Email">
+        <input type="text" placeholder="Create Username">
+        <input type="password" placeholder="Create Password">
+
+        <button onclick="register()">Register</button>
+
+        <p style="margin-top:20px;">
+            Already have an account?
+            <span class="link" onclick="showPage('login')">
+                Login
+            </span>
+        </p>
+    </div>
+
+    <script>
+        function showPage(pageName) {
+            let pages = document.querySelectorAll(".page");
+
+            pages.forEach(function(page) {
+                page.classList.remove("active");
+            });
+
+            document.getElementById(pageName).classList.add("active");
+        }
+
+        function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username === "" || password === "") {
+                alert("Please enter username and password.");
+            } else {
+                alert("Login successful!");
+            }
+        }
+
+        function register() {
+            alert("Registration completed!");
+            showPage("login");
+        }
+    </script>
 
 </body>
 </html>
+```
+
