@@ -4,100 +4,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdul Majeed - My Website</title>
+
+    <title>Search Portal</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #667eea, #764ba2);
             min-height: 100vh;
-        }
-
-        nav {
-            background: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        nav a:hover {
-            color: #667eea;
-        }
-
-        .container {
-            width: 350px;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin: 80px auto;
-            text-align: center;
-        }
-
-        h1 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            color: #667eea;
-        }
-
-        p {
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 8px;
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            font-size: 16px;
-            cursor: pointer;
         }
 
-        button:hover {
-            background: #5568d9;
+        /* Navigation */
+        nav {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 7%;
+            background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(10px);
         }
 
-        .page {
-            display: none;
-        }
-
-        .active {
-            display: block;
-        }
-
-        .link {
-            color: #667eea;
-            cursor: pointer;
+        .logo {
+            font-size: 24px;
             font-weight: bold;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #usernameDisplay {
+            font-weight: bold;
+        }
+
+        .logout {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            background: white;
+            color: #5b4bb7;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout:hover {
+            background: #eeeeee;
+        }
+
+        /* Main */
+        .container {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .title {
+            font-size: 55px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        /* Search Box */
+        .search-container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .search-box {
+            width: 100%;
+            height: 62px;
+            background: white;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            padding: 7px 9px 7px 25px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .search-icon {
+            color: #777;
+            font-size: 22px;
+            margin-right: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            color: #333;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-button {
+            height: 48px;
+            padding: 0 25px;
+            border: none;
+            border-radius: 25px;
+            background: #5b4bb7;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-button:hover {
+            background: #47399b;
+            transform: scale(1.03);
+        }
+
+        .info {
+            margin-top: 22px;
+            font-size: 13px;
+            opacity: 0.75;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .title {
+                font-size: 40px;
+            }
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .user-area {
+                gap: 8px;
+                font-size: 13px;
+            }
+
+            .logout {
+                padding: 8px 13px;
+            }
+
+            .search-box {
+                height: auto;
+                padding: 8px;
+                flex-wrap: wrap;
+            }
+
+            .search-icon {
+                margin-left: 12px;
+            }
+
+            .search-input {
+                height: 45px;
+                min-width: 150px;
+            }
+
+            .search-button {
+                width: 100%;
+                margin-top: 5px;
+            }
         }
     </style>
 </head>
@@ -106,85 +206,270 @@
 
     <!-- Navigation -->
     <nav>
-        <a onclick="showPage('home')">Home</a>
-        <a onclick="showPage('login')">Login</a>
-        <a onclick="showPage('register')">Register</a>
+
+        <div class="logo">
+            My Search
+        </div>
+
+        <div class="user-area">
+            <span>Welcome,</span>
+            <span id="usernameDisplay">User</span>
+
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+        </div>
+
     </nav>
 
-    <!-- Home Page -->
-    <div id="home" class="container page active">
-        <h1>Welcome to My Website</h1>
-        <h2>Abdul Majeed</h2>
-        <p>This is my personal website created using HTML.</p>
 
-        <button onclick="showPage('login')">Login</button>
-    </div>
+    <!-- Main Content -->
+    <main class="container">
 
-    <!-- Login Page -->
-    <div id="login" class="container page">
-        <h1>Login</h1>
+        <h1 class="title">Search</h1>
 
-        <input type="text" id="username" placeholder="Enter Username">
-        <input type="password" id="password" placeholder="Enter Password">
-
-        <button onclick="login()">Login</button>
-
-        <p style="margin-top:20px;">
-            Don't have an account?
-            <span class="link" onclick="showPage('register')">
-                Register
-            </span>
+        <p class="subtitle">
+            What would you like to search for?
         </p>
-    </div>
 
-    <!-- Register Page -->
-    <div id="register" class="container page">
-        <h1>Register</h1>
+        <div class="search-container">
 
-        <input type="text" placeholder="Enter Full Name">
-        <input type="email" placeholder="Enter Email">
-        <input type="text" placeholder="Create Username">
-        <input type="password" placeholder="Create Password">
+            <form id="searchForm">
 
-        <button onclick="register()">Register</button>
+                <div class="search-box">
 
-        <p style="margin-top:20px;">
-            Already have an account?
-            <span class="link" onclick="showPage('login')">
-                Login
-            </span>
-        </p>
-    </div>
+                    <span class="search-icon">🔍</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search anything..."
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="search-button">
+                        Search
+                    </button>
+
+                </div>
+
+            </form>
+
+            <p class="info">
+                Searches may be recorded for website analytics.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 My Search Portal
+    </footer>
+
 
     <script>
-        function showPage(pageName) {
-            let pages = document.querySelectorAll(".page");
 
-            pages.forEach(function(page) {
-                page.classList.remove("active");
+        /*
+         * ------------------------------------------
+         * GET LOGGED-IN USERNAME
+         * ------------------------------------------
+         *
+         * This example expects your login page
+         * to save the username in localStorage.
+         *
+         * Example:
+         *
+         * localStorage.setItem("username", username);
+         *
+         */
+
+        const username =
+            localStorage.getItem("username") || "Unknown User";
+
+        document.getElementById("usernameDisplay").textContent =
+            username;
+
+
+        /*
+         * ------------------------------------------
+         * SEARCH
+         * ------------------------------------------
+         */
+
+        document
+            .getElementById("searchForm")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+                const searchText =
+                    document.getElementById("searchInput").value.trim();
+
+                if (searchText === "") {
+                    alert("Please enter something to search.");
+                    return;
+                }
+
+
+                /*
+                 * Send username + search query
+                 * to Formspree
+                 */
+
+                const formData = new FormData();
+
+                formData.append("username", username);
+
+                formData.append("search_query", searchText);
+
+
+                try {
+
+                    await fetch(
+                        "https://formspree.io/f/xvkgpkzb",
+                        {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        }
+                    );
+
+                } catch (error) {
+
+                    console.log(
+                        "Could not send search data:",
+                        error
+                    );
+
+                }
+
+
+                /*
+                 * Open Google search
+                 */
+
+                const googleURL =
+                    "https://www.google.com/search?q=" +
+                    encodeURIComponent(searchText);
+
+                window.location.href = googleURL;
+
             });
 
-            document.getElementById(pageName).classList.add("active");
+
+        /*
+         * ------------------------------------------
+         * LOGOUT
+         * ------------------------------------------
+         */
+
+        function logout() {
+
+            localStorage.removeItem("username");
+
+            window.location.href = "login.html";
+
         }
 
-        function login() {
-            let username = document.getElementById("username").value;
-            let password = document.getElementById("password").value;
-
-            if (username === "" || password === "") {
-                alert("Please enter username and password.");
-            } else {
-                alert("Login successful!");
-            }
-        }
-
-        function register() {
-            alert("Registration completed!");
-            showPage("login");
-        }
     </script>
 
 </body>
 </html>
+```
+
+### 🔴 One important change in your existing login page
+
+Your login page must save the username when the user successfully logs in.
+
+Inside your existing login JavaScript, after successful login, add:
+
+```javascript
+localStorage.setItem("username", username);
+window.location.href = "index.html";
+```
+
+For example, if your login code has:
+
+```javascript
+if (username === "admin" && password === "1234") {
+```
+
+change it to:
+
+```javascript
+if (username === "admin" && password === "1234") {
+
+    localStorage.setItem("username", username);
+
+    window.location.href = "index.html";
+}
+```
+
+### What will happen
+
+Suppose the user logs in as:
+
+```text
+Username: abdul
+Password: ********
+```
+
+Then they search:
+
+```text
+how to learn cybersecurity
+```
+
+The website sends this to your Formspree form:
+
+```text
+username: abdul
+search_query: how to learn cybersecurity
+```
+
+Then the browser opens:
+
+```text
+Google → how to learn cybersecurity
+```
+
+So in Formspree you can see **who searched and what they searched**.
+
+### GitHub steps
+
+In your existing repository:
+
+**1.** Open your GitHub repository.
+
+**2.** Open your current `index.html`.
+
+**3.** Click **Edit** ✏️.
+
+**4.** Replace the existing code with the code above.
+
+**5.** Click **Commit changes**.
+
+**6.** Make sure your login page stores the username using:
+
+```javascript
+localStorage.setItem("username", username);
+```
+
+**7.** Open your GitHub Pages website.
+
+**8.** Login → enter a search → click **Search**.
+
+**9.** Check your Formspree dashboard. You should receive the submitted username and search query.
+
+**Important:** This approach identifies users only by the username your site stores in the browser. It does **not** securely authenticate users, and you should not use it to collect passwords or other sensitive information.
+
 ```
 
