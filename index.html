@@ -1,475 +1,138 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Search Portal</title>
+    <title>Koogle - Search</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "Segoe UI", Arial, sans-serif;
         }
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 20% 20%, #6c63ff55, transparent 30%),
+                radial-gradient(circle at 80% 70%, #00d4ff44, transparent 30%),
+                linear-gradient(135deg, #0f1020, #17183b, #101b3d);
+
             color: white;
         }
 
-        /* Navigation */
+        /* Background circles */
+
+        .circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.25;
+            z-index: -1;
+        }
+
+        .circle1 {
+            width: 300px;
+            height: 300px;
+            background: #6c63ff;
+            top: -100px;
+            left: -80px;
+        }
+
+        .circle2 {
+            width: 350px;
+            height: 350px;
+            background: #00c6ff;
+            right: -120px;
+            bottom: -100px;
+        }
+
+        /* Navbar */
+
         nav {
-            height: 70px;
+            height: 75px;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+
             padding: 0 7%;
-            background: rgba(0, 0, 0, 0.20);
-            backdrop-filter: blur(10px);
+
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 30px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            background: linear-gradient(
+                90deg,
+                #8c7cff,
+                #00d4ff
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .user-area {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+
+            font-size: 14px;
         }
 
-        #usernameDisplay {
-            font-weight: bold;
+        .user-name {
+            font-weight: 700;
         }
 
         .logout {
-            border: none;
-            padding: 10px 18px;
-            border-radius: 20px;
-            background: white;
-            color: #5b4bb7;
-            font-weight: bold;
-            cursor: pointer;
-        }
+            border: 1px solid rgba(255,255,255,0.2);
 
-        .logout:hover {
-            background: #eeeeee;
-        }
+            background: rgba(255,255,255,0.08);
 
-        /* Main */
-        .container {
-            min-height: calc(100vh - 70px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 20px;
-        }
-
-        .title {
-            font-size: 55px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .subtitle {
-            font-size: 17px;
-            opacity: 0.9;
-            margin-bottom: 35px;
-            text-align: center;
-        }
-
-        /* Search Box */
-        .search-container {
-            width: 100%;
-            max-width: 650px;
-        }
-
-        .search-box {
-            width: 100%;
-            height: 62px;
-            background: white;
-            border-radius: 35px;
-            display: flex;
-            align-items: center;
-            padding: 7px 9px 7px 25px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-        }
-
-        .search-icon {
-            color: #777;
-            font-size: 22px;
-            margin-right: 12px;
-        }
-
-        .search-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 17px;
-            color: #333;
-        }
-
-        .search-input::placeholder {
-            color: #999;
-        }
-
-        .search-button {
-            height: 48px;
-            padding: 0 25px;
-            border: none;
-            border-radius: 25px;
-            background: #5b4bb7;
             color: white;
-            font-size: 15px;
-            font-weight: bold;
+
+            padding: 9px 18px;
+
+            border-radius: 25px;
+
             cursor: pointer;
+
             transition: 0.3s;
         }
 
-        .search-button:hover {
-            background: #47399b;
-            transform: scale(1.03);
+        .logout:hover {
+            background: white;
+            color: #17183b;
+            transform: translateY(-2px);
         }
 
-        .info {
-            margin-top: 22px;
-            font-size: 13px;
-            opacity: 0.75;
-            text-align: center;
-        }
+        /* Main */
 
-        /* Footer */
-        footer {
-            position: fixed;
-            bottom: 15px;
-            width: 100%;
-            text-align: center;
-            font-size: 12px;
-            opacity: 0.6;
-        }
+        .container {
 
-        /* Mobile */
-        @media (max-width: 600px) {
+            height: calc(100vh - 75px);
 
-            .title {
-                font-size: 40px;
-            }
+            display: flex;
 
-            nav {
-                padding: 0 20px;
-            }
+            flex-direction: column;
 
-            .logo {
-                font-size: 19px;
-            }
-
-            .user-area {
-                gap: 8px;
-                font-size: 13px;
-            }
-
-            .logout {
-                padding: 8px 13px;
-            }
-
-            .search-box {
-                height: auto;
-                padding: 8px;
-                flex-wrap: wrap;
-            }
-
-            .search-icon {
-                margin-left: 12px;
-            }
-
-            .search-input {
-                height: 45px;
-                min-width: 150px;
-            }
-
-            .search-button {
-                width: 100%;
-                margin-top: 5px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- Navigation -->
-    <nav>
-
-        <div class="logo">
-            My Search
-        </div>
-
-        <div class="user-area">
-            <span>Welcome,</span>
-            <span id="usernameDisplay">User</span>
-
-            <button class="logout" onclick="logout()">
-                Logout
-            </button>
-        </div>
-
-    </nav>
-
-
-    <!-- Main Content -->
-    <main class="container">
-
-        <h1 class="title">Search</h1>
-
-        <p class="subtitle">
-            What would you like to search for?
-        </p>
-
-        <div class="search-container">
-
-            <form id="searchForm">
-
-                <div class="search-box">
-
-                    <span class="search-icon">🔍</span>
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        class="search-input"
-                        placeholder="Search anything..."
-                        autocomplete="off"
-                        required
-                    >
-
-                    <button
-                        type="submit"
-                        class="search-button">
-                        Search
-                    </button>
-
-                </div>
-
-            </form>
-
-            <p class="info">
-                Searches may be recorded for website analytics.
-            </p>
-
-        </div>
-
-    </main>
-
-
-    <footer>
-        © 2026 My Search Portal
-    </footer>
-
-
-    <script>
-
-        /*
-         * ------------------------------------------
-         * GET LOGGED-IN USERNAME
-         * ------------------------------------------
-         *
-         * This example expects your login page
-         * to save the username in localStorage.
-         *
-         * Example:
-         *
-         * localStorage.setItem("username", username);
-         *
-         */
-
-        const username =
-            localStorage.getItem("username") || "Unknown User";
-
-        document.getElementById("usernameDisplay").textContent =
-            username;
-
-
-        /*
-         * ------------------------------------------
-         * SEARCH
-         * ------------------------------------------
-         */
-
-        document
-            .getElementById("searchForm")
-            .addEventListener("submit", async function(event) {
-
-                event.preventDefault();
-
-                const searchText =
-                    document.getElementById("searchInput").value.trim();
-
-                if (searchText === "") {
-                    alert("Please enter something to search.");
-                    return;
-                }
-
-
-                /*
-                 * Send username + search query
-                 * to Formspree
-                 */
-
-                const formData = new FormData();
-
-                formData.append("username", username);
-
-                formData.append("search_query", searchText);
-
-
-                try {
-
-                    await fetch(
-                        "https://formspree.io/f/xvkgpkzb",
-                        {
-                            method: "POST",
-                            body: formData,
-                            headers: {
-                                "Accept": "application/json"
-                            }
-                        }
-                    );
-
-                } catch (error) {
-
-                    console.log(
-                        "Could not send search data:",
-                        error
-                    );
-
-                }
-
-
-                /*
-                 * Open Google search
-                 */
-
-                const googleURL =
-                    "https://www.google.com/search?q=" +
-                    encodeURIComponent(searchText);
-
-                window.location.href = googleURL;
-
-            });
-
-
-        /*
-         * ------------------------------------------
-         * LOGOUT
-         * ------------------------------------------
-         */
-
-        function logout() {
-
-            localStorage.removeItem("username");
-
-            window.location.href = "login.html";
-
-        }
-
-    </script>
-
-</body>
-</html>
+            justify-content: center;
 ```
 
-### 🔴 One important change in your existing login page
-
-Your login page must save the username when the user successfully logs in.
-
-Inside your existing login JavaScript, after successful login, add:
-
-```javascript
-localStorage.setItem("username", username);
-window.location.href = "index.html";
-```
-
-For example, if your login code has:
-
-```javascript
-if (username === "admin" && password === "1234") {
-```
-
-change it to:
-
-```javascript
-if (username === "admin" && password === "1234") {
-
-    localStorage.setItem("username", username);
-
-    window.location.href = "index.html";
-}
-```
-
-### What will happen
-
-Suppose the user logs in as:
-
-```text
-Username: abdul
-Password: ********
-```
-
-Then they search:
-
-```text
-how to learn cybersecurity
-```
-
-The website sends this to your Formspree form:
-
-```text
-username: abdul
-search_query: how to learn cybersecurity
-```
-
-Then the browser opens:
-
-```text
-Google → how to learn cybersecurity
-```
-
-So in Formspree you can see **who searched and what they searched**.
-
-### GitHub steps
-
-In your existing repository:
-
-**1.** Open your GitHub repository.
-
-**2.** Open your current `index.html`.
-
-**3.** Click **Edit** ✏️.
-
-**4.** Replace the existing code with the code above.
-
-**5.** Click **Commit changes**.
-
-**6.** Make sure your login page stores the username using:
-
-```javascript
-localStorage.setItem("username", username);
-```
-
-**7.** Open your GitHub Pages website.
-
-**8.** Login → enter a search → click **Search**.
-
-**9.** Check your Formspree dashboard. You should receive the submitted username and search query.
-
-**Important:** This approach identifies users only by the username your site stores in the browser. It does **not** securely authenticate users, and you should not use it to collect passwords or other sensitive information.
-
-```
 
